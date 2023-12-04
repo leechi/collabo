@@ -3,6 +3,8 @@ import { useState } from "react"
 import { auth } from "../firebase";
 import { useNavigate, Link } from "react-router-dom";
 import { FirebaseError } from "firebase/app";
+import GithubButton from "../components/github-btn";
+
 
 
 export default function CreateAccount() {
@@ -59,6 +61,7 @@ export default function CreateAccount() {
           
        Already have an account? <Link to="/login">Log in &rarr;</Link>
       </section>
+      <GithubButton/>
     </div>
   )
 }
