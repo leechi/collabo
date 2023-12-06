@@ -16,9 +16,8 @@ export default function GithubButton(){
     return (
         
         <div>
-            <button onClick={onClick}>
+            <button className="sns-login" onClick={onClick}>
                 <img src="/github-logo.svg" alt="" />
-                깃허브로 로그인
             </button>
         </div>
     )

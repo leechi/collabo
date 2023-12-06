@@ -3,13 +3,22 @@
         border-radius: 15px;
         background-color: white;
         z-index: 1;
-    .login__form{
+        width: 25.1rem;
+        height: 32.1rem;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        height: 39.1rem;
-        width: 25.1rem;
+        .login__desc{
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .login__form{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-direction: column;
+            height: 20.1rem;
         input{
             width: 19rem;
             border-radius: 10px;
@@ -24,9 +33,60 @@
             font-weight: 700;
             font-size: 1.2rem;
         }
+        .login__title{
+            font-size: 1.6rem;
+            color: #41A8B5;
+            font-weight: 900;
+        }
+    }
+    .login__sns-box{
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        width: 70%;
+        
     }
 }
+.login__or{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 20px 0;
+    span{
+        background-color: white;
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        text-align: center;
+        top: -7px;
+        font-weight: 700;
+    }
+    hr{
+        width: 80%;
+        border: 1px solid #C9D5DA;
+    }
+}
+
 .login__img{
     width: 45.1rem;
     height: 39.1rem;
+}
+.auth-question{
+    margin-top: 20px;
+}
+
+.sns-login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #dfdfdf;
+    border-radius: 10px;
+    padding: 10px;
+    
+    img{
+        width: 40px;
+        height: 40px;
+    }
 }

@@ -42,16 +42,23 @@ export default function Login() {
     <div className="wrapper">
       <div className="login">
         <form className="login__form" onSubmit={onSubmit}>
-          <h1>Login</h1>
+          <h1 className="login__title">Collabo</h1>
+          <p className="login__desc">여러분들과 함께할 동료를 찾아보세요</p>
           <input type="text"name="email" placeholder="Email" value={email} required onChange={onChange}/>
           <input type="password" name="password" placeholder="Password" value={password} required onChange={onChange}/>
           <input className="login__btn" type="submit" value={isLoading ? "Loading..." :"로그인"} />
-        <GithubButton/>
-        <section>
-          Don't have an account? <Link to="/create-account">Create one &rarr;</Link>
-        </section>
         </form>
         {error !== "" ? <div>{error}</div> :null}
+        <div className="login__or">
+          <span>OR</span>
+          <hr className="or" />
+        </div>
+        <div className="login__sns-box">
+        <GithubButton/>
+        </div>
+        <section className="auth-question">
+          Don't have an account? <Link to="/create-account">Create one &rarr;</Link>
+        </section>
       </div>
       <img className="login__img" src="/login.png" alt="" />
     </div>
