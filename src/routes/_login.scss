@@ -75,13 +75,17 @@
 }
 .auth-question{
     margin-top: 20px;
+    color: #D3d3d3;
+    font-weight: 700;
+    a{
+        color: #6EAAF8;
+    }
 }
 
 .sns-login{
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #dfdfdf;
     border-radius: 10px;
     padding: 10px;
     
