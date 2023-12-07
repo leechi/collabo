@@ -9,6 +9,8 @@ import { useEffect, useState } from 'react';
 import LoadingScreen from './components/LoadingScreen';
 import {auth} from './firebase'
 import ProtectedRoute from './components/ProtectedRoute';
+import Team from './routes/Team';
+import BookMarks from './routes/BookMarks';
 
 const router = createBrowserRouter([
   {
@@ -25,7 +27,15 @@ const router = createBrowserRouter([
       },
       {
         path: "profile",
-        element: <Profile />,
+        element: "안녕",
+      },
+      {
+        path: "team",
+        element: <Team />,
+      },
+      {
+        path: "bookmarks",
+        element: <BookMarks />,
       },
     ],
   },
