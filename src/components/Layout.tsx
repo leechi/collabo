@@ -13,6 +13,9 @@ export default function Layout() {
   return (
     <div className="wrapper-menu">
       <ul className="nav">
+      <Link to='/'>
+      <h1>Collabo</h1>
+      </Link>
         <Link to='/'>
           <li className="nav__menu-item">
             <img src="home.svg" alt="" />
@@ -42,7 +45,15 @@ export default function Layout() {
           <span>Logout</span>
         </li>
       </ul>
+      <div className="middle">
       <Outlet />
+      </div>
+      <section className="search">
+        <div className="search-bar">
+          <label htmlFor="search"><img src="search.svg" alt="" /></label>
+          <input type="text" id="search" placeholder="search" />
+        </div>
+      </section>
     </div>
   );
 }
