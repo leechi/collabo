@@ -1,5 +1,6 @@
 /* HTML: <div class="loader"></div> */
 .loader {
+    z-index: 10;
     width: 50px;
     aspect-ratio: 1;
     display: grid;
@@ -12,9 +13,9 @@
 .loader:after {
     background:
         radial-gradient(closest-side at 50% 12.5%,
-            #f03355 96%, #0000) 50% 0/20% 80% repeat-y,
+            #41A8B5 96%, #0000) 50% 0/20% 80% repeat-y,
         radial-gradient(closest-side at 12.5% 50%,
-            #f03355 96%, #0000) 0 50%/80% 20% repeat-x;
+            #41A8B5 96%, #0000) 0 50%/80% 20% repeat-x;
 }
 
 .loader:before,
@@ -34,7 +35,7 @@
     }
 }
 
-.wrapper{
+.wrapper-loading{
     height: 100vh;
     display: flex;
     justify-content: center;
