@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { db } from "../firebase";
 import Tweet from "./Tweet";
 import { Unsubscribe } from "firebase/auth";
+import LoadingScreen from "./LoadingScreen";
 
 export interface ITweet {
   id: string;
@@ -15,6 +16,7 @@ export interface ITweet {
 
 export default function Timeline() {
   const [tweets, setTweet] = useState<ITweet[]>([]);
+  const [loading, setLoading] = useState(true);
    useEffect(() => {
     let unsubscribe: Unsubscribe | null = null;
     const fetchTweets = async () => {
@@ -36,6 +38,7 @@ export default function Timeline() {
           };
         });
         setTweet(tweets);
+        setLoading(false)
       });
     };
     fetchTweets();
@@ -45,9 +48,12 @@ export default function Timeline() {
   }, []);
   return (
     <div>
-      {tweets.map((tweet) => (
+      {
+      loading ? <LoadingScreen/>: 
+      tweets.map((tweet) => (
         <Tweet key={tweet.id} {...tweet} />
-      ))}
+        ))
+      }
     </div>
   );
 }
