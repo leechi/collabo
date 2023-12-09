@@ -1,0 +1,68 @@
+.tweet{
+    margin-top: 5px;
+    border: 1px solid #ECECEC;
+    height: auto;
+    padding: 14px;
+    .tweet__header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .tweet__username{
+            font-size: 16px;
+        }
+        &-left{
+            display: flex;
+            align-items: center;
+            width: 170px;
+            justify-content: space-between;
+            span{
+                font-size: 13px;
+            }
+        }
+    }
+    .tweet__middle{
+        display: flex;
+        align-items: start;
+        justify-content: center;
+        flex-direction: column;
+        .tweet__content{
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        img{
+            border-radius: 10px;
+            width: 100%;
+            height: auto;
+            
+        }
+        .tweet__skill{
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &-list{
+                height: auto;
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                li{
+                    margin-right: 10px;
+                    margin-bottom: 10px;
+                    padding: 3px 14px;
+                    background-color: #4BC1CF;
+                    color: white;
+                    font-weight: 700;
+                    border-radius: 15px;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+
+    .tweet__bottom{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+}

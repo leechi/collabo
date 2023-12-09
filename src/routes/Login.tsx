@@ -3,7 +3,7 @@ import { auth } from "../firebase";
 import { Link, useNavigate } from "react-router-dom";
 import { FirebaseError } from "firebase/app";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import GithubButton from "../components/github-btn";
+import GithubButton from "../components/Github-btn";
 
 
 export default function Login() {
