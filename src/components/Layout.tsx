@@ -10,43 +10,46 @@ export default function Layout() {
       navigate("/login");
     }
   };
+
   return (
     <div className="wrapper-menu">
       <ul className="nav">
-      <Link to='/'>
-      <h1>Collabo</h1>
-      </Link>
-        <Link to='/'>
-          <li className="nav__menu-item">
+        <li>
+          <Link to='/'>
+            <h1>Collabo</h1>
+          </Link>
+        </li>
+        <li className="nav__menu-item">
+          <Link to='/'>
             <img src="home.svg" alt="" />
             <span>Home</span>
-          </li>
-        </Link>
-        <Link to='/bookmarks'>
-          <li className="nav__menu-item">
+          </Link>
+        </li>
+        <li className="nav__menu-item">
+          <Link to='/bookmarks'>
             <img src="bookmark.svg" alt="" />
             <span>Bookmarks</span>
-          </li>
-        </Link>
-        <Link to='profile'>
-          <li className="nav__menu-item">
+          </Link>
+        </li>
+        <li className="nav__menu-item">
+          <Link to='/profile'>
             <img src="profile.svg" alt="" />
             <span>Profile</span>
-          </li>
-        </Link>
-        <Link to='team'>
-          <li className="nav__menu-item">
+          </Link>
+        </li>
+        <li className="nav__menu-item">
+          <Link to='/team'>
             <img src="team.svg" alt="" />
             <span>Team</span>
-          </li>
-        </Link>
+          </Link>
+        </li>
         <li onClick={onLogOut} className="nav__menu-item">
           <img src="logout.svg" alt="" />
           <span>Logout</span>
         </li>
       </ul>
       <div className="middle">
-      <Outlet />
+        <Outlet />
       </div>
       <section className="search">
         <div className="search-bar">
