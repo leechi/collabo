@@ -27,7 +27,7 @@ const router = createBrowserRouter([
       },
       {
         path: "profile",
-        element: "안녕",
+        element: <Profile/>,
       },
       {
         path: "team",
