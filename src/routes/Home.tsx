@@ -1,11 +1,9 @@
-import PostTweetForm from "../components/PostTweetForm";
-import Timeline from "../components/timeline";
+import Timeline from "../components/Timeline";
 
 
 export default function Home() {
   return (
     <>
-      <PostTweetForm/>
       <Timeline/>
     </>
   );

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ITweet } from "./timeline";
+import { ITweet } from "./Timeline";
 import { auth, db, storage } from "../firebase";
 import { deleteDoc, doc } from "firebase/firestore";
 import { deleteObject, ref } from "firebase/storage";
@@ -29,7 +29,7 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
   }
   const [bookmark, setBookmark] = useState(false)
   const handleBookmark = () =>{
-    setBookmark(true)
+    setBookmark(!bookmark)
   }
   return (
     <section className="tweet">
