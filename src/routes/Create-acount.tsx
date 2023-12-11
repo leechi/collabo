@@ -3,7 +3,7 @@ import { useState } from "react"
 import { auth } from "../firebase";
 import { useNavigate, Link } from "react-router-dom";
 import { FirebaseError } from "firebase/app";
-import GithubButton from "../components/github-btn";
+import GithubButton from "../components/Github-btn";
 
 
 
@@ -48,20 +48,29 @@ export default function CreateAccount() {
     }
   };
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <h1>Log into Collabo</h1>
+    <div className="join-bg">
+      <div className="join-box">
+      <form className="join" onSubmit={onSubmit}>
+        <h1>Collabo</h1>
+        <p className="join-intro">팀을 찾기 가장 쉬운길 <span>Collabo</span></p>
         <input type="text" name="name" placeholder="Name" value={name} required onChange={onChange}/>
         <input type="text"name="email" placeholder="Email" value={email} required onChange={onChange}/>
         <input type="password" name="password" placeholder="Password" value={password} required onChange={onChange}/>
-        <input type="submit" value={isLoading ? "Loading..." :"회원가입"} />
+        <input className="join-btn" type="submit" value={isLoading ? "Loading..." :"회원가입"} />
       </form>
       {error !== "" ? <div>{error}</div> :null}
-        <section>
-          
+      
+      <div className="login__or">
+          <span>OR</span>
+          <hr className="or" />
+        </div>
+      <div className="login__sns-box">
+       <GithubButton/>
+      </div>
+      <section>  
        Already have an account? <Link to="/login">Log in &rarr;</Link>
       </section>
-      <GithubButton/>
+      </div>
     </div>
   )
 }
