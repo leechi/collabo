@@ -49,7 +49,6 @@ export default function Timeline() {
   return (
     <div>
       {
-      loading ? <LoadingScreen/>: 
       tweets.map((tweet) => (
         <Tweet key={tweet.id} {...tweet} />
         ))
