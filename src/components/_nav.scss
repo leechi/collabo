@@ -6,6 +6,26 @@
     width: 100%;
     
     .nav{
+        .post-btn{
+            background-color: #4BC1CF;
+            padding: 10px 80px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 100%;
+            
+            &:hover{
+                background-color: #41A8B5;
+                transition: 1s ease;
+            }
+        }
+        hr{
+            border: #d9d9d9 0.6px solid;
+            width: 200px;
+            margin-bottom: 10px;
+
+        }
         width: 250px;
         h1{
             font-size: 24px;
@@ -17,9 +37,16 @@
             display: flex;
             align-items: center;
             justify-content: start;
+            padding: 5px 10px;
             margin-bottom: 22px;
             &:hover{
                 cursor: pointer;
+                
+                width: 200px;
+                
+                border-radius: 10px;
+                scale: 1.1;
+                transition: scale 1s ease;
             }
             img{
                 width: 30px;
