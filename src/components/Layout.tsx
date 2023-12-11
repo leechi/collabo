@@ -1,5 +1,8 @@
 import { auth } from "../firebase";
 import { Link, useNavigate, Outlet } from "react-router-dom";
+import useModal from "./useModal";
+import PostModal from "./modal/PostModal";
+
 
 export default function Layout() {
   const navigate = useNavigate();
@@ -10,9 +13,13 @@ export default function Layout() {
       navigate("/login");
     }
   };
+  const {handlePostModal, postModal} = useModal()
 
   return (
+    <>
+    {postModal ? <PostModal/> : null}
     <div className="wrapper-menu">
+      
       <ul className="nav">
         <li>
           <Link to='/'>
@@ -39,8 +46,16 @@ export default function Layout() {
         </li>
         <li className="nav__menu-item">
           <Link to='/team'>
-            <img src="team.svg" alt="" />
-            <span>Team</span>
+            <img src="notifications.svg" alt="" />
+            <span>Notification</span>
+          </Link>
+        </li>
+        <button className="post-btn" onClick={handlePostModal}>Post</button>
+        <hr />
+        <li className="nav__menu-item">
+          <Link to="/setting">
+          <img src="/settings.svg" alt="" />
+          <span>Setting</span>
           </Link>
         </li>
         <li onClick={onLogOut} className="nav__menu-item">
@@ -49,6 +64,7 @@ export default function Layout() {
         </li>
       </ul>
       <div className="middle">
+        
         <Outlet />
       </div>
       <section className="search">
@@ -58,5 +74,6 @@ export default function Layout() {
         </div>
       </section>
     </div>
+    </>
   );
 }
