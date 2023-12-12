@@ -26,57 +26,64 @@ export default function Layout() {
     <div className="wrapper-menu">
       <div className="nav-box"></div>
       <ul className="nav">
-        <li>
-          <Link to='/'>
-            <h1>Collabo</h1>
-          </Link>
-        </li>
-        <li className="nav__menu-item">
-          <Link to='/'>
-            <img src="home.svg" alt="" />
-            <span>Home</span>
-          </Link>
-        </li>
-        <li className="nav__menu-item">
-          <Link to='/bookmarks'>
-            <img src="bookmark.svg" alt="" />
-            <span>Bookmarks</span>
-          </Link>
-        </li>
-        <li className="nav__menu-item">
-          <Link to='/profile'>
-            <img src="profile.svg" alt="" />
-            <span>Profile</span>
-          </Link>
-        </li>
-        <li className="nav__menu-item">
-          <Link to='/team'>
-            <img src="notifications.svg" alt="" />
-            <span>Notification</span>
-          </Link>
-        </li>
-        <button className="post-btn" onClick={handlePostModal}>Post</button>
-        <hr />
-        <li className="nav__menu-item">
-          <Link to="/setting">
-          <img src="/settings.svg" alt="" />
-          <span>Setting</span>
-          </Link>
-        </li>
-        <li onClick={onLogOut} className="nav__menu-item">
-          <img src="logout.svg" alt="" />
-          <span>Logout</span>
-        </li>
+        <div className="nav-top">
+          <li>
+            <Link to='/'>
+              <h1>Collabo</h1>
+            </Link>
+          </li>
+          <li>
+            <div className="search-bar">
+            <label htmlFor="search"><img src="search.svg" alt="" /></label>
+            <input type="text" id="search" placeholder="search" />
+            </div>
+          </li>
+          <li className="nav__menu-item">
+            <Link to='/'>
+              <img src="home.svg" alt="" />
+              <span>Home</span>
+            </Link>
+          </li>
+          <li className="nav__menu-item">
+            <Link to='/bookmarks'>
+              <img src="bookmark.svg" alt="" />
+              <span>Bookmarks</span>
+            </Link>
+          </li>
+          <li className="nav__menu-item">
+            <Link to='/profile'>
+              <img src="profile.svg" alt="" />
+              <span>Profile</span>
+            </Link>
+          </li>
+          <li className="nav__menu-item">
+            <Link to='/team'>
+              <img src="notifications.svg" alt="" />
+              <span>Notification</span>
+            </Link>
+          </li>
+          <button className="post-btn" onClick={handlePostModal}>Post</button>
+          </div>
+          <div className="nav-bottom">
+            <hr />
+            <li className="nav__menu-item">
+              <Link to="/setting">
+              <img src="/settings.svg" alt="" />
+              <span>Setting</span>
+              </Link>
+            </li>
+            <li onClick={onLogOut} className="nav__menu-item">
+              <img src="logout.svg" alt="" />
+              <span>Logout</span>
+            </li>
+        </div>
       </ul>
       <div className="middle">
         <Outlet />
       </div>
       <div className="search-box"></div>
       <section className="search">
-        <div className="search-bar">
-          <label htmlFor="search"><img src="search.svg" alt="" /></label>
-          <input type="text" id="search" placeholder="search" />
-        </div>
+        
       </section>
     </div>
     </>
