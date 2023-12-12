@@ -85,6 +85,7 @@ const ProfileModal = () => {
                   <h1>Edit Profile</h1>
                   <button type="submit">Save</button>
                 </div>
+                
                 <div className="profile-info">
                   <label htmlFor="" className="profile-img"><img src="/add-photo.svg" alt="" /></label>
                   <img className="img" src="" alt="" />

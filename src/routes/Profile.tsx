@@ -1,12 +1,24 @@
-import { auth, storage } from "../firebase";
-import { useState } from "react";
+import { auth, db, storage } from "../firebase";
+import { useState, useEffect } from "react";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
 import useModal from "../components/useModal";
+import {
+  collection,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
+import { ITweet } from "../components/Timeline";
+import Tweet from "../components/Tweet";
+
 
 export default function Profile() {
   const user = auth.currentUser;
   const [avatar, setAvatar] = useState(user?.photoURL);
+  const [tweets, setTweets] = useState<ITweet[]>([]);
   const {handleProfile}= useModal()
   const onAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
@@ -22,7 +34,33 @@ export default function Profile() {
       });
     }
   };
+  const fetchTweets = async () => {
+    const tweetQuery = query(
+      collection(db, "tweets"),
+      where("userId", "==", user?.uid),
+      orderBy("createdAt", "desc"),
+      limit(25)
+    );
+    const snapshot = await getDocs(tweetQuery);
+    const tweets = snapshot.docs.map((doc) => {
+      const { tweet, createdAt, userId, username, photo } = doc.data();
+      return {
+        tweet,
+        createdAt,
+        userId,
+        username,
+        photo,
+        id: doc.id,
+      };
+    });
+    setTweets(tweets);
+  };
+  useEffect(() => {
+    fetchTweets();
+  }, []);
+
   return (
+    <>
     <section className="profile">
       <div className="profile-top">
         {avatar ? (
@@ -81,5 +119,11 @@ export default function Profile() {
         <li>TypeScript</li>
       </ul>
     </section>
+          <section>
+        {tweets.map((tweet) => (
+          <Tweet key={tweet.id} {...tweet} />
+        ))}
+      </section>
+      </>
   );
 }
