@@ -2,7 +2,9 @@ import { auth } from "../firebase";
 import { Link, useNavigate, Outlet } from "react-router-dom";
 import useModal from "./useModal";
 import PostModal from "./modal/PostModal";
-
+import UpdateModal from "./modal/UpdateModal";
+import ProfileModal from "./modal/ProfileModal";
+import ApplicationModal from "./modal/ApplicationModal";
 
 export default function Layout() {
   const navigate = useNavigate();
@@ -13,13 +15,16 @@ export default function Layout() {
       navigate("/login");
     }
   };
-  const {handlePostModal, postModal} = useModal()
-
+  const {profileModal, handlePostModal, postModal, updateModal,applicationModal} = useModal()
+  
   return (
     <>
+    {profileModal === true ? <ProfileModal/> : null}
+    {applicationModal === true ?<ApplicationModal/> :null}
+    {updateModal === true ? <UpdateModal/>: null}
     {postModal ? <PostModal/> : null}
     <div className="wrapper-menu">
-      
+      <div className="nav-box"></div>
       <ul className="nav">
         <li>
           <Link to='/'>
@@ -64,9 +69,9 @@ export default function Layout() {
         </li>
       </ul>
       <div className="middle">
-        
         <Outlet />
       </div>
+      <div className="search-box"></div>
       <section className="search">
         <div className="search-bar">
           <label htmlFor="search"><img src="search.svg" alt="" /></label>

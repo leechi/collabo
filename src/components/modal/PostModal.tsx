@@ -4,20 +4,30 @@ import { useState } from "react";
 import { auth, db, storage } from "../../firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import useModal from "../useModal";
+import { atom, useAtom } from "jotai";
+
+const tweetAtom = atom<string>("")
+const numberAtom = atom<string>("")
+const dateAtom = atom<string>("")
+const skillAtom = atom<string[]>([])
+const typeAtom = atom<string>("")
+const positionsAtom = atom<string[]>([])
+const imgAtom = atom<string>("")
+
 
 export default function PostModal(){
   const [isLoading, setLoading] = useState(false);
-  const [tweet, setTweet] = useState("");
+  const [tweet, setTweet] = useAtom(tweetAtom);
   const [file, setFile] = useState<File | null>(null);
-  const [number, setNumber] = useState("");
-  const [date, setDate] = useState("");
-  const [type, setType] = useState("");
-  const [skill, setSkill] = useState<string[]>([]);
-  const [positions, setPositions] = useState<string[]>([]);
-  const [inputSkill, setInputSkill] = useState<string>('')
-  const [imgSrc, setImgSrc] = useState<string>('')
+  const [number, setNumber] = useAtom(numberAtom);
+  const [date, setDate] = useAtom(dateAtom);
+  const [type, setType] = useAtom(typeAtom);
+  const [skill, setSkill] = useAtom(skillAtom);
+  const [positions, setPositions] = useAtom(positionsAtom);
+  const [inputSkill, setInputSkill] = useState('')
+  const [imgSrc, setImgSrc] = useAtom(imgAtom)
 
-  const {modalBubbling} = useModal()
+  const {modalBubbling, setPostModal} = useModal()
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTweet(e.target.value);
   };
@@ -37,8 +47,7 @@ export default function PostModal(){
 
   const onDateChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
     const inputDate = e.target.value
-    const resultDate = inputDate.replace(/-/g, ".")
-    setDate(resultDate)
+    setDate(inputDate)
   }
 
   const selectType = (type:string) =>{
@@ -84,6 +93,7 @@ export default function PostModal(){
     if(!user || isLoading || tweet === "" || tweet.length > 180) return;
     try{
       setLoading(true)
+      setPostModal(false);
       const doc = await addDoc(collection(db, "tweets"), {
         tweet,
         number,
@@ -109,6 +119,7 @@ export default function PostModal(){
       console.log(e);
     }finally{
       setLoading(false);
+      
     }
   }
 
@@ -138,19 +149,19 @@ export default function PostModal(){
                                 <div className="post__type">
                                     <label htmlFor="">타입</label>
                                     <div>
-                                        <button className={`'' ${type==="프로젝트" ? 'select-btn':''}`} onClick={()=> selectType("프로젝트")}>프로젝트</button>
-                                        <button className={`'' ${type==="스터디" ? 'select-btn':''}`} onClick={()=> selectType("스터디")}>스터디</button>
+                                        <span className={`'' ${type==="프로젝트" ? 'select-btn':''}`} onClick={()=> selectType("프로젝트")}>프로젝트</span>
+                                        <span className={`'' ${type==="스터디" ? 'select-btn':''}`} onClick={()=> selectType("스터디")}>스터디</span>
                                     </div>
                                 </div>
                                 <div className="post__position">
                                     <label htmlFor="">모집포지션</label>
                                     <div className="position-btn">
-                                        <button onClick={()=>selectPosition("프론트엔드")}  className={`'' ${positions.includes("프론트엔드") ? 'select-btn':''}`}>프론트엔드</button>
-                                        <button onClick={()=>selectPosition("백엔드")}  className={`'' ${positions.includes("백엔드") ? 'select-btn':''}`}>백엔드</button>
-                                        <button onClick={()=>selectPosition("기획자")}  className={`'' ${positions.includes("기획자") ? 'select-btn':''}`}>기획자</button>
-                                        <button onClick={()=>selectPosition("디자이너")}  className={`'' ${positions.includes("디자이너") ? 'select-btn':''}`}>디자이너</button>
-                                        <button onClick={()=>selectPosition("IOS")}  className={`'' ${positions.includes("IOS") ? 'select-btn':''}`}>IOS</button>
-                                        <button onClick={()=>selectPosition("안드로이드")}  className={`'' ${positions.includes("안드로이드") ? 'select-btn':''}`}>안드로이드</button>
+                                        <span onClick={()=>selectPosition("프론트엔드")}  className={`'' ${positions.includes("프론트엔드") ? 'select-btn':''}`}>프론트엔드</span>
+                                        <span onClick={()=>selectPosition("백엔드")}  className={`'' ${positions.includes("백엔드") ? 'select-btn':''}`}>백엔드</span>
+                                        <span onClick={()=>selectPosition("기획자")}  className={`'' ${positions.includes("기획자") ? 'select-btn':''}`}>기획자</span>
+                                        <span onClick={()=>selectPosition("디자이너")}  className={`'' ${positions.includes("디자이너") ? 'select-btn':''}`}>디자이너</span>
+                                        <span onClick={()=>selectPosition("IOS")}  className={`'' ${positions.includes("IOS") ? 'select-btn':''}`}>IOS</span>
+                                        <span onClick={()=>selectPosition("안드로이드")}  className={`'' ${positions.includes("안드로이드") ? 'select-btn':''}`}>안드로이드</span>
                                     </div>
                                 </div>
                             </div>
