@@ -1,0 +1,57 @@
+.application-modal{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0 0 10px 0 rgba($color: #000000, $alpha: 0.5);
+    width: 500px;
+    height: 250px;
+    border-radius: 10px;
+    padding: 10px 20px;
+    .app-top{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        margin-bottom: 10px;
+        label{
+            font-weight: 900;
+            text-align: left;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        textarea{
+            width: 100%;
+            height: auto;
+            resize: none;
+        }
+    }
+    .app-bottom{
+        display: flex;
+        width: 100%;
+        align-items: center;
+        margin-bottom: 10px;
+        label {
+                font-weight: 900;
+                width: 20%;
+            }
+        input {
+            width: 80%;
+
+        }
+    }
+    
+    
+    .app-btn{
+        background-color: #41A8B5;
+        color: white;
+        font-size: 18px;
+        font-weight: 900;
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+}

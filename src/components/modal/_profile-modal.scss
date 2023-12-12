@@ -1,0 +1,81 @@
+.profile-form{
+    width: 450px;
+    height: auto;
+    background-color: white;
+    border-radius: 20px;
+    padding: 0px 20px 20px 20px;
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    flex-direction: column;
+    position: relative;
+
+    .profile-top{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        h1{
+            font-size: 18px;
+
+        }
+        button{
+            padding: 4px 17px;
+            border-radius: 25px;
+            background-color: #4BC1CF;
+            color: white;
+            font-weight: 900;
+        }
+    }
+    .background-img{
+        width: 100%;
+        background-color: black;
+        border-radius: 10px;
+        height: 200px;
+    }
+    .profile-img{
+        position: absolute;
+        top: 220px;
+        left: 30px;
+        width: 70px;
+        height: 70px;
+        background-color: bisque;
+        border-radius: 10px;
+    }
+    .profile-name{
+        font-weight: 900;
+        margin-top: 50px;
+        margin-bottom: 10px;
+    }
+    input{
+        border: 1px solid #ececec;
+        width: 100%;
+        height: 45px;
+        border-radius: 10px;
+        padding-left: 10px;
+        margin-bottom: 10px;
+        &::placeholder{
+            font-weight: 900;
+            font-size: 13px;
+            color: black;
+        }
+    }
+    .profile__skill{
+        width: 100%;
+        .skill-list{
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        span{
+            border: 1px solid #4BC1CF;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border-radius: 30px;
+            padding: 3px 6px;
+            font-weight: 700;
+            font-size: 12px;
+        }
+    }
+    
+}
