@@ -66,12 +66,6 @@ export default function Layout() {
           </div>
           <div className="nav-bottom">
             <hr />
-            <li className="nav__menu-item">
-              <Link to="/setting">
-              <img src="/settings.svg" alt="" />
-              <span>Setting</span>
-              </Link>
-            </li>
             <li onClick={onLogOut} className="nav__menu-item">
               <img src="logout.svg" alt="" />
               <span>Logout</span>
