@@ -85,9 +85,11 @@ const ProfileModal = () => {
                   <h1>Edit Profile</h1>
                   <button type="submit">Save</button>
                 </div>
-                <img className="background-img" src="" alt="" />
-                <img className="profile-img" src="" alt="" />
-                <span className="profile-name">leechi</span>
+                <div className="profile-info">
+                  <label htmlFor="" className="profile-img"><img src="/add-photo.svg" alt="" /></label>
+                  <img className="img" src="" alt="" />
+                  <span className="profile-name">leechi</span>
+                </div>
                 <input type="text" placeholder="상태메시지" value={statusMessage} onChange={onStatusMessageChange} />
                 <input type="text" placeholder="대표 포지션" value={position} onChange={onPositionChange} />
                 <input type="text" placeholder="깃허브 링크" value={githubLink} onChange={onGithubLinkChange} />

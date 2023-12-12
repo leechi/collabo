@@ -8,7 +8,6 @@
     align-items: start;
     justify-content: space-between;
     flex-direction: column;
-    position: relative;
 
     .profile-top{
         display: flex;
@@ -27,26 +26,32 @@
             font-weight: 900;
         }
     }
-    .background-img{
-        width: 100%;
-        background-color: black;
-        border-radius: 10px;
-        height: 200px;
-    }
     .profile-img{
-        position: absolute;
-        top: 220px;
-        left: 30px;
         width: 70px;
         height: 70px;
-        background-color: bisque;
+        background-color: black;
         border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-    .profile-name{
-        font-weight: 900;
-        margin-top: 50px;
-        margin-bottom: 10px;
+    .profile-info{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        .profile-name {
+                font-weight: 900;
+                margin-left: 20px;
+                font-size: 18px;
+                
+            }
     }
+    
+    .img{
+        display: none;
+    }
+    
     input{
         border: 1px solid #ececec;
         width: 100%;
