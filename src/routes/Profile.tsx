@@ -24,7 +24,7 @@ export default function Profile() {
   };
   return (
     <section className="profile">
-      <img  className="user-background-img" src="/login.png" alt="" />
+      <div className="profile-top">
         {avatar ? (
           <img className="user-profile-img" src={avatar} />
         ) : (
@@ -39,35 +39,47 @@ export default function Profile() {
           </svg>
         )}
       {/* TODO : 모달창에 넣어야함 */}
-      <input
+      {/* <input
         onChange={onAvatarChange}
         id="avatar"
         type="file"
         accept="image/*"
-      />
-      <div className="user-contact">
-        <button className="user-btn" onClick={handleProfile}><img src="/edit.svg" alt="" /></button>
-        <button className="github-link">GitHub</button>
-      </div>
-
+      /> */}
       <div className="user-info">
-      <span className="user-name">{user?.displayName ?? "Anonymous"}</span>
-      <p className="user-intro">함께 좋은 경험해요!</p>
-      <div className="user-detail">
-        <div>
-          <label htmlFor="type"><img src="/contacts.svg" alt="" /></label>
-          <span className="user-type" id="type">FrontEnd</span>
-        </div>
-        <div>
-          <label htmlFor="type">MBTI</label>
-          <span className="user-mbti">ENFJ</span>
-        </div>
+          <span className="user-name">{user?.displayName ?? "Anonymous"}</span>
+          <p className="user-intro">함께 좋은 경험해요!</p>
+          
+            <div className="user-detail">
+              <div>
+                <label htmlFor="type"><img src="/contacts.svg" alt="" /></label>
+                <span className="user-type" id="type">FrontEnd</span>
+              </div>
+              <div>
+                <label htmlFor="type">MBTI</label>
+                <span className="user-mbti">ENFJ</span>
+              </div>
+            </div>
+            <div className="user-contact">
+              <button className="github-link">GitHub</button>
+              <button className="user-btn" onClick={handleProfile}><img src="/edit.svg" alt="" /></button>
+            </div>
+      </div>
       </div>
       <ul className="user-skills">
         <li>React</li>
         <li>TypeScript</li>
+                <li>React</li>
+        <li>TypeScript</li>
+                <li>React</li>
+        <li>TypeScript</li>
+                <li>React</li>
+        <li>TypeScript</li>
+                <li>React</li>
+        <li>TypeScript</li>
+
+                <li>React</li>
+        <li>TypeScript</li>
       </ul>
-      </div>
     </section>
   );
 }
