@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { db } from "../firebase";
 import Tweet from "./Tweet";
 import { Unsubscribe } from "firebase/auth";
-import LoadingScreen from "./LoadingScreen";
 
 export interface ITweet {
   id: string;
@@ -12,11 +11,16 @@ export interface ITweet {
   userId: string;
   username: string;
   createdAt: number;
+  positions: string[];
+  skill: string[];
+  number:string;
+  date:string;
+  type:string;
+
 }
 
 export default function Timeline() {
   const [tweets, setTweet] = useState<ITweet[]>([]);
-  const [loading, setLoading] = useState(true);
    useEffect(() => {
     let unsubscribe: Unsubscribe | null = null;
     const fetchTweets = async () => {
@@ -27,7 +31,7 @@ export default function Timeline() {
       );
       unsubscribe = await onSnapshot(tweetsQuery, (snapshot) => {
         const tweets = snapshot.docs.map((doc) => {
-          const { tweet, createdAt, userId, username, photo } = doc.data();
+          const { tweet, createdAt, userId, username, photo, positions, skill, number, type, date } = doc.data();
           return {
             tweet,
             createdAt,
@@ -35,10 +39,10 @@ export default function Timeline() {
             username,
             photo,
             id: doc.id,
+            positions, skill, number, type, date
           };
         });
         setTweet(tweets);
-        setLoading(false)
       });
     };
     fetchTweets();

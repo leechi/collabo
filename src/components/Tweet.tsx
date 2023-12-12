@@ -3,14 +3,19 @@ import { ITweet } from "./Timeline";
 import { auth, db, storage } from "../firebase";
 import { deleteDoc, doc } from "firebase/firestore";
 import { deleteObject, ref } from "firebase/storage";
+import useModal from "./useModal";
+import { Link } from "react-router-dom";
 
-
-export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
+export default function Tweet({ username, photo, tweet, userId, id,positions, skill, number, type, date }: ITweet) {
   const user = auth.currentUser;
   const [userModal, setUserModal] = useState(false)
-  const handleUserModal = () => {
-      setUserModal(true)
-  }
+  const {handleUpdate, handleApplicationModal}= useModal()
+const handleUserModal = () => {
+    setUserModal(true);
+}
+console.log(userModal)
+  
+
   const handleDelete = async () =>{
     const ok = confirm("Are you sure you want to delete this tweet?");
     if(!ok || user?.uid !== userId) return;
@@ -31,21 +36,27 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
   const handleBookmark = () =>{
     setBookmark(!bookmark)
   }
+
+  
   return (
-    <section className="tweet">
+    <>
+    <section className="tweet" onClick={(e)=>{console.log(e.target)}}>
+      
       <div className="tweet__header">
         <div className="tweet__header-left">
           {/* <img src="/login.png" alt="" /> */}
+          <Link to={'/profile'}>
           <h3 className="tweet__username">{username}</h3>
+          </Link>
           <div className="tweet__detail">
-            <span><img src="/language.svg" alt="" /> 프로젝트</span>
-            <span><img src="/supervised_user_circle.svg" alt="" />3명</span>
-            <span><img src="/event_available.svg" alt="" />~12월 11일</span>
+            <span><img src="/language.svg" alt="" /> {type}</span>
+            <span><img src="/supervised_user_circle.svg" alt="" />{number}명</span>
+            <span><img src="/event_available.svg" alt="" />~{date}</span>
           </div>
         </div>
-        {user?.uid === userId ? <button className="userModal-btn" onClick={handleUserModal}><img src="/more_horiz.svg" alt="" /></button> : <button className="team-btn">신청하기</button>}
+        {user?.uid === userId ? <button className="userModal-btn"  onClick={handleUserModal}><img src="/more_horiz.svg" alt="" /></button> : <button className="team-btn" onClick={handleApplicationModal}>신청하기</button>}
         {userModal ? <div className="tweet__userModal">
-          <button><img src="/edit.svg" alt="" />edit</button>
+          <button onClick={()=>{handleUpdate(id); setUserModal(false)}}><img src="/edit.svg" alt="" />edit</button>
           <button onClick={handleDelete}><img src="/delete.svg" alt="" />delete</button>
         </div> : null}
       </div>
@@ -59,13 +70,21 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
     </div>
     <div className="tweet__bottom">
       <ul className="tweet__user-type">
-        <li>프론트엔드</li>
+        {
+          positions?.map((position, idx)=>(
+            <li key={idx}>{position}</li>
+          ))
+        }
       </ul>
       <div className="tweet__bottom-left">
         <div className="tweet__skill">
           <ul className="tweet__skill-list">
-            <li>React</li>
-            <li>TypeScript</li>
+            {
+              skill?.map((skillItem, idx)=>(
+                <li key={idx}>{skillItem}</li>
+              ))
+            }
+            
           </ul>
         </div>
         <button onClick={handleBookmark}>
@@ -76,5 +95,6 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
       </div>
     </div>
     </section>
+    </>
   );
 }

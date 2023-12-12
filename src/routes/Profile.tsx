@@ -2,10 +2,12 @@ import { auth, storage } from "../firebase";
 import { useState } from "react";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
+import useModal from "../components/useModal";
 
 export default function Profile() {
   const user = auth.currentUser;
   const [avatar, setAvatar] = useState(user?.photoURL);
+  const {handleProfile}= useModal()
   const onAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
     if (!user) return;
@@ -27,6 +29,7 @@ export default function Profile() {
           <img className="user-profile-img" src={avatar} />
         ) : (
           <svg
+            className="user-profile-img"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +46,7 @@ export default function Profile() {
         accept="image/*"
       />
       <div className="user-contact">
-        <button className="user-btn"><img src="/edit.svg" alt="" /></button>
+        <button className="user-btn" onClick={handleProfile}><img src="/edit.svg" alt="" /></button>
         <button className="github-link">GitHub</button>
       </div>
 
