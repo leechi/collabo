@@ -2,7 +2,8 @@ import {KeyboardEvent, ChangeEvent} from "react"
 import { useState } from "react";
 import useModal from "../useModal";
 import { atom, useAtom } from "jotai";
-import { addDoc, collection, updateDoc } from "firebase/firestore";
+import { updateProfile } from "firebase/auth";
+import { addDoc, collection, doc, getDoc, updateDoc } from "firebase/firestore";
 import { auth, db, storage } from "../../firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
@@ -11,14 +12,26 @@ const skillAtom = atom<string[]>([])
 
 const ProfileModal = () => {
   const [skill, setSkill] = useAtom(skillAtom);
+  const [file, setFile] = useState<File | null>(null);
   const [inputSkill, setInputSkill] = useState('')
   const [statusMessage, setStatusMessage] = useState('')
   const [position, setPosition] = useState('')
   const [githubLink, setGithubLink] = useState('')
   const [mbti, setMbti] = useState('')
+  const [avartar, setAvatar] = useState<string>('')
 
   const {modalBubbling} = useModal()
   
+
+    const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.target;
+    if (files && files.length === 1) {
+        const preview = URL.createObjectURL(files[0])
+        setFile(files[0]);
+        setAvatar(preview)
+    }
+  };
+
   const onSkillChange = (e: ChangeEvent<HTMLInputElement>) =>{
     setInputSkill(e.target.value)
   }
@@ -60,22 +73,14 @@ const ProfileModal = () => {
     e.preventDefault();
     const user = auth.currentUser
     if(!user) return;
-    try{
-      const doc = await addDoc(collection(db, "tweets"), {
-        
-      })
-      if(file){
-        const locationRef = ref(storage, `tweets/${user.uid}/${doc.id}`);
+    if(file){
+        const locationRef = ref(storage, `avatars/${user?.uid}`);
         const result = await uploadBytes(locationRef, file);
-        const url = await getDownloadURL(result.ref);
-        await updateDoc(doc, {
-          photo: url
+        const avartarUrl = await getDownloadURL(result.ref);
+        await updateProfile(user, {
+          photoURL: avartarUrl
         })
       }
-      
-    }catch(e){
-      console.log(e);
-    }
   }
 
   return (
@@ -85,10 +90,10 @@ const ProfileModal = () => {
                   <h1>Edit Profile</h1>
                   <button type="submit">Save</button>
                 </div>
-                
+        
                 <div className="profile-info">
-                  <label htmlFor="" className="profile-img"><img src="/add-photo.svg" alt="" /></label>
-                  <img className="img" src="" alt="" />
+                  <label htmlFor="avatar" className="profile-img"><img className="avartar-img" src={avartar?.length > 0 ? avartar : "/avartar-img.svg"} alt="" /></label>
+                  <input id="avatar" onChange={onFileChange} type="file" accept="image/*"/>
                   <span className="profile-name">leechi</span>
                 </div>
                 <input type="text" placeholder="상태메시지" value={statusMessage} onChange={onStatusMessageChange} />
