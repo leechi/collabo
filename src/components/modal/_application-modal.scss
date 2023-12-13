@@ -9,6 +9,13 @@
     height: 250px;
     border-radius: 10px;
     padding: 10px 20px;
+    .app-message-length{
+        text-align: end;
+        width: 100%;
+        font-size: 14px;
+        font-weight: 700;
+        color: #dbdbdb;
+    }
     .app-top{
         display: flex;
         align-items: center;

@@ -38,8 +38,8 @@ const ApplicationModal = () => {
             <form onSubmit={onSubmit} className="application-modal">
               <div className="app-top">
                 <label htmlFor="app-message">메시지</label>
-                <textarea maxLength={100} onChange={onMessageChange} id="app-message" placeholder="신청 메시지를 작성해주세요 :)"></textarea>
-                <span>{message.length}/ 100</span>
+                <textarea maxLength={80} onChange={onMessageChange} id="app-message" placeholder="신청 메시지를 작성해주세요 :)"></textarea>
+                <span className="app-message-length">{message.length}/ 80</span>
                </div>
                <div className="app-bottom">
                 <label htmlFor="app-contact">연락 수단</label>

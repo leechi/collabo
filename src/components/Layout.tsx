@@ -53,10 +53,10 @@ export default function Layout() {
             </Link>
           </li>
           <li className="nav__menu-item">
-            <a href={`/profile/${user?.uid}`}>
+            <Link to={`/profile/${user?.uid}`}>
               <img src="profile.svg" alt="" />
               <span>Profile</span>
-            </a>
+            </Link>
           </li>
           <li className="nav__menu-item">
             <Link to='/team'>

@@ -36,6 +36,15 @@
                 font-size: 14px;
                 color: #62ace8;
             }
+            .notification-info-bottom{
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                .notification-time{
+                    font-size: 12px;
+                    color: #bebebe;
+                }
+            }
         }
     }
 }

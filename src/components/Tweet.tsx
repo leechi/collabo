@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ITweet } from "./Timeline";
 import { auth, db, storage } from "../firebase";
-import { deleteDoc, doc } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc } from "firebase/firestore";
 import { deleteObject, ref } from "firebase/storage";
 import useModal from "./useModal";
 import { Link } from "react-router-dom";
@@ -33,8 +33,15 @@ console.log(userModal)
     }
   }
   const [bookmark, setBookmark] = useState(false)
-  const handleBookmark = () =>{
+  const handleBookmark = async() =>{
     setBookmark(!bookmark)
+    await addDoc(collection(db, "bookmarks"), {
+      postId: id,
+      userId: user?.uid ,
+      createAt:new Date()
+      //TODO : get을 받아온다. 이미 데이터를 또 불러온다. 이 함수 안에서 그러면 받아온 값을 보고 delete도 하게 만든다.
+    })
+
   }
 
   

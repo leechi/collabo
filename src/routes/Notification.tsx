@@ -4,27 +4,14 @@ export default function Notification() {
       <h1>Notification</h1>
       <section className="notification">
         <div className="notification-user">
-          <img className="notification-img" src="" alt="" />
+          <img className="notification-img" src="https://image.dongascience.com/Photo/2020/03/5bddba7b6574b95d37b6079c199d7101.jpg" alt="" />
           <div className="notification-info">
-            <span className="notification-name">name</span>
-            <span className="notification-desc">신청하기는 할건데 이게 맞나 싶네요 이렇게 100자를 만드는데 시간을 소요하고 있는데 이게 맞나요 이게 맞을까요? 대표사진 추가하기 이것도ㅇㅇㅇ </span>
-            <span className="notification-contact">010-1111-1111</span>
-          </div>
-        </div>
-        <div className="notification-user">
-          <img className="notification-img" src="" alt="" />
-          <div className="notification-info">
-            <span className="notification-name">name</span>
-            <span className="notification-desc">신청합니다</span>
-            <span className="notification-contact">010-1111-1111</span>
-          </div>
-        </div>
-        <div className="notification-user">
-          <img className="notification-img" src="" alt="" />
-          <div className="notification-info">
-            <span className="notification-name">name</span>
-            <span className="notification-desc"></span>
-            <span className="notification-contact">010-1111-1111</span>
+            <span className="notification-name">멍멍이</span>
+            <span className="notification-desc">왈왈왈!</span>
+            <div className="notification-info-bottom">
+              <span className="notification-contact">010-1111-1111</span>
+              <span className="notification-time">7시간전</span>
+            </div>
           </div>
         </div>
       </section>
