@@ -40,6 +40,21 @@
         align-items: center;
         justify-content: center;
         margin-bottom: 20px;
+        position: relative;
+        .avartar-img{
+            width: 70px;
+            height: 70px;
+            border-radius: 10px;
+
+        }
+        #avatar{
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            top: 0;
+            left: 0;
+            display: none;
+        }
         .profile-name {
                 font-weight: 900;
                 margin-left: 20px;

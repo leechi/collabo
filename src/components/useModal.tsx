@@ -56,7 +56,8 @@ const [profileModal, setProfileModal] = useAtom(profileModalAtom)
     postId,
     applicationModal,
     handleApplicationModal,
-    handleProfile
+    handleProfile,
+    setProfileModal
   }
 }
 
