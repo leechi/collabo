@@ -1,9 +1,9 @@
-import {KeyboardEvent, ChangeEvent} from "react"
+import {KeyboardEvent, ChangeEvent, useEffect} from "react"
 import { useState } from "react";
 import useModal from "../useModal";
 import { atom, useAtom } from "jotai";
 import { updateProfile } from "firebase/auth";
-import { addDoc, collection, doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db, storage } from "../../firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
@@ -18,9 +18,9 @@ const ProfileModal = () => {
   const [position, setPosition] = useState('')
   const [githubLink, setGithubLink] = useState('')
   const [mbti, setMbti] = useState('')
-  const [avartar, setAvatar] = useState<string>('')
-
-  const {modalBubbling} = useModal()
+  const [avatar, setAvatar] = useState<string>('')
+const user = auth.currentUser;
+  const {modalBubbling, setProfileModal} = useModal()
   
 
     const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,20 +68,58 @@ const ProfileModal = () => {
   }
 };
 
-  const onSubmit = async(e:React.FormEvent<HTMLFormElement>)=>{
+const fetchUpdate = async () =>{
+  if(user){
 
+  
+  const docRef = doc(db, "users", user?.uid);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    console.log("Document data:", docSnap.data());
+    const data = docSnap.data()
+      setStatusMessage(data.statusMessage);
+      setGithubLink(data.githubLink);
+      setPosition(data.position);
+      setMbti(data.mbti);
+      setSkill(data.skill);
+      setAvatar(data.avatar)
+  } else {
+    console.log("No such document!");
+  }
+  }
+  }
+  useEffect(()=>{
+    fetchUpdate();
+  },[])
+
+  const onSubmit = async(e:React.FormEvent<HTMLFormElement>)=>{
     e.preventDefault();
     const user = auth.currentUser
     if(!user) return;
-    if(file){
-        const locationRef = ref(storage, `avatars/${user?.uid}`);
-        const result = await uploadBytes(locationRef, file);
-        const avartarUrl = await getDownloadURL(result.ref);
-        await updateProfile(user, {
-          photoURL: avartarUrl
-        })
-      }
-  }
+    try{
+        let avatarUrl = "";
+        if(file){
+            const locationRef = ref(storage, `avatars/${user?.uid}`);
+            const result = await uploadBytes(locationRef, file);
+            avatarUrl = await getDownloadURL(result.ref);
+            await updateProfile(user, {
+                photoURL: avatarUrl
+            })
+        }
+        const docRef = doc(db, "users", user.uid);
+        await setDoc(docRef, {
+            skill,statusMessage,mbti, githubLink, position,
+            userId: user.uid,
+            username: user.displayName || "Anonymous",
+            avatar: avatarUrl
+        }, { merge: true });
+        setProfileModal(false)
+    }catch(e){
+        console.log(e)
+    }
+}
+
 
   return (
     <section className="post-modal-bg" onClick={modalBubbling}>
@@ -92,7 +130,7 @@ const ProfileModal = () => {
                 </div>
         
                 <div className="profile-info">
-                  <label htmlFor="avatar" className="profile-img"><img className="avartar-img" src={avartar?.length > 0 ? avartar : "/avartar-img.svg"} alt="" /></label>
+                  <label htmlFor="avatar" className="profile-img"><img className="avartar-img" src={avatar?.length > 0 ? avatar : "/avartar-img.svg"} alt="" /></label>
                   <input id="avatar" onChange={onFileChange} type="file" accept="image/*"/>
                   <span className="profile-name">leechi</span>
                 </div>
