@@ -7,6 +7,8 @@ import ProfileModal from "./modal/ProfileModal";
 import ApplicationModal from "./modal/ApplicationModal";
 
 export default function Layout() {
+  const user = auth.currentUser;
+  console.log(user?.uid)
   const navigate = useNavigate();
   const onLogOut = async () => {
     const ok = confirm("Are you sure you want to log out?");
@@ -51,10 +53,10 @@ export default function Layout() {
             </Link>
           </li>
           <li className="nav__menu-item">
-            <Link to='/profile'>
+            <a href={`/profile/${user?.uid}`}>
               <img src="profile.svg" alt="" />
               <span>Profile</span>
-            </Link>
+            </a>
           </li>
           <li className="nav__menu-item">
             <Link to='/team'>

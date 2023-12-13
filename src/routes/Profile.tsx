@@ -12,6 +12,7 @@ import {
 } from "firebase/firestore";
 import { ITweet } from "../components/Timeline";
 import Tweet from "../components/Tweet";
+import { useParams } from "react-router-dom";
 export interface User {
     skill: string[];
     statusMessage: string;
@@ -25,6 +26,8 @@ export interface User {
 
 export default function Profile() {
   const user = auth.currentUser;
+  const {id} = useParams();
+  console.log(id)
   const [avatar] = useState(user?.photoURL);
   const [tweets, setTweets] = useState<ITweet[]>([]);
   const [users, setUsers] = useState<User[]>([])
@@ -32,7 +35,7 @@ export default function Profile() {
   const fetchTweets = async () => {
     const tweetQuery = query(
       collection(db, "tweets"),
-      where("userId", "==", user?.uid),
+      where("userId", "==", id),
       orderBy("createdAt", "desc"),
       limit(25)
     );
@@ -52,11 +55,11 @@ export default function Profile() {
     setTweets(tweets);
   };
   const fetchUsers = () => {
-  const tweetQuery = query(
+  const userQuery = query(
     collection(db,"users"),
-    where("userId", "==", user?.uid)
+    where("userId", "==", id)
   );
-  const unsubscribe = onSnapshot(tweetQuery, (snapshot) => {
+  const unsubscribe = onSnapshot(userQuery, (snapshot) => {
     const users = snapshot.docs.map((doc)=>{
       const{skill,statusMessage,mbti, githubLink, position, userId, username, avatar} = doc.data();
       return{
@@ -95,7 +98,7 @@ console.log(users)
           </svg>
         )}
       <div className="user-info">
-          <span className="user-name">{user?.displayName ?? "Anonymous"}</span>
+          <span className="user-name">{users[0]?.username ?? "Anonymous"}</span>
           <p className="user-intro">{users[0]?.statusMessage}</p>
           
             <div className="user-detail">
@@ -110,7 +113,7 @@ console.log(users)
             </div>
             <div className="user-contact">
               <a href={users[0]?.githubLink} target="_blank"><button className="github-link">GitHub</button></a>
-              <button className="user-btn" onClick={handleProfile}><img src="/edit.svg" alt="" /></button>
+              {user?.uid === id ? <button className="user-btn" onClick={handleProfile}><img src="/edit.svg" alt="" /></button>: null}
             </div>
       </div>
       </div>

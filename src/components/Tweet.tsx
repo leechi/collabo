@@ -45,7 +45,7 @@ console.log(userModal)
       <div className="tweet__header">
         <div className="tweet__header-left">
           {/* <img src="/login.png" alt="" /> */}
-          <Link to={'/profile'}>
+          <Link to={`/profile/${userId}`}>
           <h3 className="tweet__username">{username}</h3>
           </Link>
           <div className="tweet__detail">

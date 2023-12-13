@@ -132,7 +132,7 @@ const fetchUpdate = async () =>{
                 <div className="profile-info">
                   <label htmlFor="avatar" className="profile-img"><img className="avartar-img" src={avatar?.length > 0 ? avatar : "/avartar-img.svg"} alt="" /></label>
                   <input id="avatar" onChange={onFileChange} type="file" accept="image/*"/>
-                  <span className="profile-name">leechi</span>
+                  <span className="profile-name">{user?.displayName}</span>
                 </div>
                 <input type="text" placeholder="상태메시지" value={statusMessage} onChange={onStatusMessageChange} />
                 <input type="text" placeholder="대표 포지션" value={position} onChange={onPositionChange} />
