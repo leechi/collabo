@@ -19,7 +19,7 @@ const [profileModal, setProfileModal] = useAtom(profileModalAtom)
     setProfileModal(true)
   }
 
-  const handleUpdate = (id) =>{
+  const handleUpdate = (id: string | ((prev: string) => string)) =>{
     setUpdateModal(true)
     setPostId(id)
   }

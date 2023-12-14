@@ -17,7 +17,11 @@
         align-items: center;
         justify-content: space-between;
         .tweet__username{
-            font-size: 16px;
+            font-size: 14px;
+            overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                width: 40px;
         }
         .team-btn{
             background-color: #4BC1CF;
@@ -32,7 +36,7 @@
         &-left{
             display: flex;
             align-items: center;
-            width: 340px;
+            width: auto;
             
             justify-content: space-between;
             .tweet__detail{
@@ -40,7 +44,6 @@
                 align-items: center;
                 justify-content: center;
                 width: 300px;
-                margin-left: 20px;
             
             span{
                 font-size: 13px;
